@@ -1,0 +1,184 @@
+<html>
+      <head>
+        <style>
+            @font-face {
+    font-family: "Sabrina";
+    font-weight: 400;
+    src: url("assets/SABRINA_.TTF");}
+          body {
+            background-image: url("assets/infancy-bg.jpg");
+            background-size: 3;
+          }
+        h1 {
+            font-size: 100;
+            font-family: "Sabrina";
+            text-align: right;
+            color: #6d534c;
+            padding-top: 25px; 
+            margin: 25;
+        }
+        h2{ 
+            font-size: 50;
+            font-family: "Sabrina";
+            text-align: right;
+            color: #7c6e6c;
+            margin: 25;
+        }
+     
+        h3 {
+          font-family: futura;
+          color: #eda7b5;
+        }
+
+        p{
+          font-family: futura;
+          color: #eda7b5;
+        }
+
+        a {
+            color:#6d534c;
+        }
+
+        a:hover {
+            color: rosybrown;
+        }
+
+        a:visited {
+            color:#eda7b5;
+        }
+        .description {
+    position: absolute;
+    bottom: 80px; 
+    right: 40px;      
+    max-width: 350px;  
+    text-align: right; 
+    z-index: 10;  
+}
+
+.description p {
+    font-family: futura;
+    color: #91726a; 
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+        .emoji {
+            position: absolute;
+            font-size: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            animation: float 3s ease-in-out infinite;
+        }
+/* the eventual popup! */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+        }
+               /* 4. The Switch: When clicked, make it visible */
+               .popup-overlay:target {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 5. The White Box Content */
+        .popup-content {
+            background: #fff7fa;
+            padding: 20px;
+            border-radius: 20px;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* making sure my pictures and videos arent MEGA */
+        .popup-content img, .popup-content video {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #6d534c;
+            text-decoration: none;
+        }
+        @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+      }
+        </style>
+    
+      </head>
+      <body>
+     <h1> infancy </h1>
+     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+     <br/><br/><br/><br/><br/><br/>
+     <h2>
+        <a href= "index.html"> home</a> 
+    </hr>
+    &nbsp;
+    <a href= "childhood.html"> next</a> 
+
+    </h2>
+
+    <div class="description">
+      <p> 
+          so at this point in my life, i’m being only dressed by my parents. i think they did a great job in my opinion.
+          i seemed like a very stylish baby and toddler. there’s something nice about knowing someone
+          used to choose what i wore and how i was presented, and that they did a great job.
+          looking back, i can see where my love for clothes came from.
+          even then, i seemed to enjoy what i wore.
+      </p>
+  </div>
+
+    <a href="#popup1" class="emoji" style="top: 15%; left: 10%;">🪽</a>
+    <a href="#popup2" class="emoji" style="top: 40%; left: 50%;">🧸</a>
+    <a href="#popup3" class="emoji" style="bottom: 20%; left: 10%;">👼🏻</a>
+
+    <div id="popup1" class="popup-overlay">
+      <div class="popup-content">
+        <a href="#" class="close-button">✖</a>
+        <h3>february 10, 2007</h3>
+        <p>a pretty good choice in clothes from my parents if i do say so myself - was my favorite color being pink fate?</p>
+        <img src="assets/infancy-1.jpg">
+      </div>
+    </div>
+
+    <div id="popup2" class="popup-overlay">
+      <div class="popup-content">
+        <a href="#" class="close-button">✖</a>
+        <h3>date unknown</h3>
+        <p>the pink dress and a glow stick weilding diva</p>
+          <video width="100%" controls>
+            <source src="assets/infancy-2.mp4" type="video/mp4">
+          </video>
+      </div>
+    </div>
+  
+    <div id="popup3" class="popup-overlay">
+      <div class="popup-content">
+        <a href="#" class="close-button">✖</a>
+        <h3>august 16, 2008</h3>
+        <p>are we starting to see a theme here? dresses head to toe in ALL pink</p>
+        <img src="assets/infancy-3.png">
+      </div>
+    </div>
+
+      </body>
+    </html>

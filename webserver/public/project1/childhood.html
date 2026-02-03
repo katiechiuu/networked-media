@@ -1,0 +1,192 @@
+<html>
+      <head>
+        <style>
+            @font-face {
+    font-family: "Sabrina";
+    font-weight: 400;
+    src: url("assets/SABRINA_.TTF");
+}
+          body {
+            background-image: url("assets/childhood.jpg");
+            background-size: 1920px 1080px;
+            background-repeat: no-repeat;
+          }
+
+        h1 {
+            font-size: 100;
+            font-family: "Sabrina";
+            text-align: right;
+            color: #c87fae;
+            padding-top: 25px; 
+            margin: 25;
+        }
+
+        h2{ 
+            font-size: 50;
+            font-family: "Sabrina";
+            text-align: right;
+            color: #7c6e6c;
+            margin: 25;
+        }
+
+        h3 {
+          font-family: futura;
+          color: #eda7b5;
+        }
+
+        p{
+          font-family: futura;
+          color: #eda7b5;
+        }
+/* figuring out the spacing for all of this was such a pain... */
+        .description {
+    position: absolute;
+    bottom: 80px; 
+    right: 40px;      
+    max-width: 350px;  
+    text-align: right; 
+    z-index: 10;  
+}
+
+.description p {
+    font-family: futura;
+    color: #755d85; 
+    font-size: 20px;
+    line-height: 1.4;
+}
+        a {
+            color:#755d85;
+        }
+
+        a:hover {
+            color: #c87fae;
+        }
+
+        a:visited {
+            color:rgb(191, 134, 200);
+        }
+        /* my custom class so i can have my clickable emojis */
+        .emoji {
+            position: absolute;
+            font-size: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            animation: float 3s ease-in-out infinite;
+        }
+        /* the eventual popup! theres so much code that i lowkey get confused
+        so i'm making comments for each step */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+        }
+         /* my clicker */
+               .popup-overlay:target {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* my popup boxes */
+        .popup-content {
+            background: #fff7fa;
+            padding: 20px;
+            border-radius: 20px;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* making sure my pictures and videos arent MEGA */
+        .popup-content img, .popup-content video {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #6d534c;
+            text-decoration: none;
+        }
+        @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+      }
+        </style>
+    
+      </head>
+      <body>
+     <h1> childhood </h1>
+     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+     <br/><br/><br/><br/><br/><br/>
+     <h2>
+        <a href= "infancy.html"> back</a> 
+        </hr>
+        &nbsp;
+        <a href= "index.html"> home</a> 
+    </hr>
+    &nbsp;
+    <a href="adolescence.html"> next</a>
+    </h2>
+
+    <div class="description">
+      <p> 
+        i’ve now grown older, where i can make my own outfits, but my parents still
+        buy clothes for me. for a period of time, my favorite color wasn’t PINK.
+        i wanted to rebel because i wasn’t a “girly girl” and i wanted to be a tomboy. i really still did
+        love pink. it didn’t last very long. this now feels like a back and forth in
+        my identity and personality,
+        who i wanted to be like when i grew older.
+      </p>
+  </div>
+
+    <a href="#popup1" class="emoji" style="top: 35%; left: 10%;">🎀</a>
+    <a href="#popup2" class="emoji" style="top: 10%; left: 50%;">🪻</a>
+    <a href="#popup3" class="emoji" style="bottom: 20%; left: 40%;">⭐️</a>
+
+    <div id="popup1" class="popup-overlay">
+      <div class="popup-content">
+        <a href="#" class="close-button">✖</a>
+        <h3>january 10, 2009</h3>
+        <p>i'm still probably being dressed by my parents in this, still very cute though</p>
+        <img src="assets/childhood-1.JPG">
+      </div>
+    </div>
+
+    <div id="popup2" class="popup-overlay">
+      <div class="popup-content">
+        <a href="#" class="close-button">✖</a>
+        <h3>march 22, 2011</h3>
+        <p>the blues, i call this</p>
+        <img src="assets/childhood-2.JPG">
+
+      </div>
+    </div>
+  
+    <div id="popup3" class="popup-overlay">
+      <div class="popup-content">
+        <a href="#" class="close-button">✖</a>
+        <h3>august 7, 2016</h3>
+        <p>i'm not even sure how to describe this...it was 2016 and i wanted to make my own choices
+          not my worst, but i wanted to save face
+        </p>
+        <img src="assets/childhood-3.png">
+      </div>
+    </div>
+      </body>
+    </html>

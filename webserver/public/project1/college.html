@@ -1,0 +1,238 @@
+<html>
+      <head>
+        <style>
+            @font-face {
+    font-family: "Sabrina";
+    font-weight: 400;
+    src: url("assets/SABRINA_.TTF");
+}
+          body {
+            background-image: url("assets/college-bg.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+
+        h1 {
+            font-size: 100;
+            font-family: "Sabrina";
+            text-align: right;
+            color: #7c6e6c;
+            padding-top: 25px; 
+            margin: 25;
+        }
+
+        h2 {
+            font-size: 50;
+            font-family: "Sabrina";
+            text-align: right;
+            color: #7c6e6c;
+            margin: 25;
+        }
+        h3 {
+          font-family: futura;
+          color: #eda7b5;
+        }
+
+        p{
+          font-family: futura;
+          color: #eda7b5;
+        }
+        a {
+            color:#7c6e6c;
+        }
+
+        a:hover {
+            color: rgb(166, 140, 146);
+        }
+
+        a:visited {
+            color:rgb(234, 165, 188);
+        }
+
+/* figuring out the spacing for all of this was such a pain... */
+        .description {
+    position: absolute;
+    bottom: 80px; 
+    right: 40px;      
+    max-width: 350px;  
+    text-align: right; 
+    z-index: 10;  
+}
+
+.description p {
+    font-family: futura;
+    color: #7c6e6c; 
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+        /* my custom class so i can have my clickable emojis */
+        .emoji {
+            position: absolute;
+            font-size: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            animation: float 3s ease-in-out infinite;
+        }
+        /* the eventual popup! theres so much code that i lowkey get confused
+        so i'm making comments for each step */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+        }
+         /* my clicker */
+               .popup-overlay:target {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* my popup boxes */
+        .popup-content {
+            background: #fff7fa;
+            padding: 20px;
+            border-radius: 20px;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* making sure my pictures and videos arent MEGA and fit within the box*/
+        .popup-content img, .popup-content video {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #6d534c;
+            text-decoration: none;
+        }
+        /* animation!!! i was super excited about this */
+        @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+      }
+        </style>
+
+      </head>
+      <body>
+     <h1> college </h1>
+     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+     <br/><br/><br/><br/><br/><br/>
+     <h2>
+        <a href= "adolescence.html"> back</a> 
+        </hr>
+        &nbsp;
+        <a href= "index.html"> home</a> 
+    </h2>
+    <div class="description">
+      <p> 
+        here i am now, at nyu in my second year. i’ve experienced so much,
+        i’ve met so many new people, i’ve changed so much and yet
+        i’m still the same in so many ways. what i wear now feels
+        like a mix of everything i have been, and everything i am becoming.
+      </p>
+  </div>
+
+    <a href="#popup1" class="emoji" style="top: 35%; left: 5%;">🫧</a>
+    <a href="#popup2" class="emoji" style="top: 10%; left: 40%;">🪩</a>
+    <a href="#popup3" class="emoji" style="bottom: 15%; left: 25%;">🦢</a>
+    <a href="#popup4" class="emoji" style="top: 25%; left: 60%;">🩰</a>
+    <a href="#popup5" class="emoji" style="bottom: 45%; left: 30%;">🎧</a>
+    <a href="#popup6" class="emoji" style="bottom: 15%; left: 70%;">🪽</a>
+    <a href="#popup7" class="emoji" style="bottom: 30%; left: 55%;">🍸</a>
+
+    <div id="popup1" class="popup-overlay">
+      <div class="popup-content">
+        <a href="#" class="close-button">✖</a>
+        <h3>june 22, 2025</h3>
+        <p>a trip to the beach with my best friends - i remember we were so excited to plan out our outfits and take pictures
+        </p>
+        <img src="assets/college-1.png">
+      </div>
+    </div>
+
+    <div id="popup2" class="popup-overlay">
+      <div class="popup-content">
+        <a href="#" class="close-button">✖</a>
+        <h3>october 1, 2024</h3>
+        <p>freshman year had just started, and part of me was still holding on to high school
+        </p>
+        <img src="assets/college-2.JPG">
+      </div>
+    </div>
+
+    <div id="popup3" class="popup-overlay">
+      <div class="popup-content">
+        <a href="#" class="close-button">✖</a>
+        <h3>may 28, 2025</h3>
+        <p>a trip to paris over the summer! 
+        </p>
+        <img src="assets/college-3.png">
+
+      </div>
+    </div>
+  
+    <div id="popup4" class="popup-overlay">
+      <div class="popup-content">
+        <a href="#" class="close-button">✖</a>
+        <h3>august 10, 2025</h3>
+        <p>taken right before school started, where i had a picnic with school friends
+        </p>
+        <img src="assets/college-4.png">
+      </div>
+    </div>
+
+    <div id="popup5" class="popup-overlay">
+      <div class="popup-content">
+        <a href="#" class="close-button">✖</a>
+        <h3>april 26, 2025</h3>
+        <p>a surprise party that i had planned for my friend
+        </p>
+        <img src="assets/college-5.JPG">
+
+      </div>
+    </div>
+  
+    <div id="popup6" class="popup-overlay">
+      <div class="popup-content">
+        <a href="#" class="close-button">✖</a>
+        <h3>october 4, 2025</h3>
+        <p>a day out with my best friends from home!
+        </p>
+        <img src="assets/college-6.png">
+      </div>
+    </div>
+
+    <div id="popup7" class="popup-overlay">
+      <div class="popup-content">
+        <a href="#" class="close-button">✖</a>
+        <h3>january 4, 2026</h3>
+        <p>a dinner celebrating my 19th birthday, surrounded by my friends.
+          i enjoy feeling comfortable in my clothes and the person i am
+        </p>
+        <video width="100%" controls>
+          <source src="assets/college-7.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+      </body>
+    </html>
