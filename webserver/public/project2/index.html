@@ -1,0 +1,273 @@
+<html>
+<head>
+  <style>
+
+    body {
+        background: #0e0f1e;
+        transition: background 3s ease;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    #title {
+        font-family: "Apple Garmond", serif;
+        src: url("applegarmond.ttf");
+        font-style: italic;
+        font-weight: 300;
+        font-size: clamp(60px, 11vw, 130px); 
+         /* learning about accessible sizing for different screens */
+         color: #f7f0f0;
+         letter-spacing: -0.01em;
+         transition: opacity 0.6s ease;
+    }
+    #text2 {
+        margin-top: 16px;
+        font-family: "DM Mono", monospace;
+        font-size: clamp(10px, 1.4vw, 13px);
+        color: #f7f0f0;
+        transition: opacity 0.6s ease;
+    }
+    #ring-container {
+        margin-top: 50px;
+        position: relative;
+        width: 110px;
+        height: 110px;
+    }
+    #ring-rotate {
+        width: 110px;
+        height: 110px;
+        transform: rotate(-90deg);
+    }
+    #ring-bg {
+        fill: none;
+        stroke: #f7f0f02f;
+        stroke-width: 2;
+    }
+    #ring-fill {
+        fill: none;
+        stroke: #f7f0f0;
+        stroke-linecap: round;
+        stroke-dasharray: 314;
+        stroke-dashoffset: 314;
+        transition: stroke-dashoffset 1.5s ease, stroke 1.5s ease;
+    }
+    #energy-cont {
+        position: absolute;
+         top: 0; left: 0; right: 0; bottom: 0;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         gap: 3px;
+    }
+    #energy-percent {
+        font-family: "DM Mono", monospace;
+        font-size: 24px;
+        font-weight: 300;
+        color: #f7f0f08a;
+        transition: color 1s ease;
+    }
+    #energy-text {
+        font-family: "DM Mono", monospace;
+        font-size: 8px;
+        text-transform: uppercase;
+        color: #f7f0f044;
+        transition: color 1s ease;
+    }
+    #time {
+    position: fixed;
+    bottom: 20px;
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #f7f0f044;
+    transition: color 1s ease;
+    }
+    body.light-mode #time {
+        color:#f7f0f08a;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="title">EXAMINING STATE</div>
+    <div id="text2">LOADING YOUR RHYTHM...</div>
+    <div id="ring-container">
+    <svg id="ring-rotate" viewBox="0 0 110 110">
+      <circle id="ring-bg" cx="55" cy="55" r="50"/>
+      <circle id="ring-fill" cx="55" cy="55" r="50"/>
+    </svg>
+    <div id="energy-cont">
+      <span id="energy-percent">–</span>
+      <span id="energy-text">energy</span>
+    </div>
+    </div>
+    <div id="time">-</div>
+<script>
+
+    // noting what is what for simplicity and clarity and for my own sanity
+    // MY PERSONAL CIRCADIAN RHYTHM !!!! (also what im trying to define)
+    // h = the hour in the day (example: 10 = 10am, 22 = 10pm, 25 = 1am the next day bc i am definitely awake then)
+    // bg = the background color for that hour since i still wanna do the gradient thing
+    // state = the current state that i'm in displayed
+    // phrase = basically what's in text2
+    // energy = energy level displayed in #energy-percent
+    // dark = just changing the colors of the text to look better with the bg
+
+    const states = [
+        {h: 9, bg: "#0e0f1e", state: "surfacing", phrase: "CORTISOL STARTING UP, WAY TOO EARLY FOR THIS", energy: 25, dark: true},
+        {h: 10.5, bg: "#f5c9e1", state: "waking up", phrase: "BARELY FUNCTIONING", energy: 50, dark: false},
+        {h: 12, bg: "#f5c8a0", state: "online and on the move", phrase: "READY FOR THE DAY", energy: 68, dark: false},
+        {h: 13, bg: "#fff4ba", state: "peaking", phrase: "SHARP AND CLEAR", energy: 80, dark: false},
+        {h: 14, bg: "#c3e388", state: "slowing down", phrase: "THE AFTERNOON WALL", energy: 52, dark: false},
+        {h: 15, bg: "#bbd0ed", state: "the big crash", phrase: "ROTTING TIME", energy: 25, dark: false},
+        {h: 17, bg: "#8090c0", state: "recovering (with a nap)", phrase: "ROUND 2", energy: 42, dark: true},
+        {h: 19, bg: "#abd4eb", state: "waking up", phrase: "ACTUALLY AWAKE NOW", energy: 62, dark: false},
+        {h: 21, bg: "#addedc", state: "alive", phrase: "EVERYTHING IS COMING TOGETHER", energy: 88, dark: false},
+        {h: 22.5, bg: "#addebe", state: "flow state", phrase: "MY PEAK HOURS", energy: 95, dark: false},
+        {h: 24, bg: "#adc4de", state: "still going", phrase: "NOT TIRED...YET", energy: 76, dark: false},
+        {h: 25.5, bg: "#383e80", state: "winding down", phrase: "THE LONG COME DOWN", energy: 50, dark: true},
+        {h: 27, bg: "#281e40", state: "finally tired", phrase: "MAYBE IT'S TIME FOR BED", energy: 20, dark: true}
+    ]
+    let currentStateName = "";
+    const ringCircumference = 314;
+
+    window.onload = () => {
+        update();
+        setInterval(update, 1000);
+    };
+    // getting the hour as a decimal
+    function getCurrentHour() {
+        const now = new Date();
+        let hour = now.getHours() + now.getMinutes() / 60 + now.getSeconds() / 3600;
+        if (hour < 3.5) {
+            hour = hour + 24;
+        }
+        return hour;
+    }
+    // finding that state that matches the current hour
+    function getStateForHour(hour) {
+        if (hour <= states[0].h) return states[0];
+        if (hour >= states[states.length - 1].h) return states[states.length - 1];
+        for (let i=0; i < states.length - 1; i++) {
+            if (hour >= states[i].h && hour < states[i + 1].h) {
+                const midpoint = (states[i].h + states[i + 1].h) / 2;
+                return hour < midpoint ? states[i] : states[i +1];
+            }
+        }
+        return states[0];
+    }
+    // getting a gradient bg color for the current hour
+    function getBackgroundColor(hour) {
+        if (hour <= states[0].h) return states[0].bg;
+        if (hour >= states[states.length - 1].h) return states[states.length - 1].bg;
+            for (let i = 0; i < states.length - 1; i++) {
+                if (hour >= states[i].h && hour < states[i + 1].h) {
+                    const progress = (hour - states[i].h) / (states[i + 1].h - states[i].h);
+                    return blendColors(states[i].bg, states[i + 1].bg, progress);
+                }
+            }
+    }
+    // energy level for current hour
+    function getEnergyForHour(hour) {
+        if (hour <= states[0].h) return states[0].energy;
+        if (hour >= states[states.length - 1].h) return states[states.length - 1].energy;
+            for (let i = 0; i < states.length - 1; i++) {
+                if (hour >= states[i].h && hour < states[i + 1].h) {
+                    const progress = (hour - states[i].h) / (states[i + 1].h - states[i].h);
+                    return Math.round(states[i].energy + (states[i + 1].energy - states[i].energy) * progress);
+                }
+            }
+    }
+    // mixes two hex colors together
+    function blendColors(colorA, colorB, amount) {
+      const rA = parseInt(colorA.slice(1, 3), 16);
+      const gA = parseInt(colorA.slice(3, 5), 16);
+      const bA = parseInt(colorA.slice(5, 7), 16);
+
+      const rB = parseInt(colorB.slice(1, 3), 16);
+      const gB = parseInt(colorB.slice(3, 5), 16);
+      const bB = parseInt(colorB.slice(5, 7), 16);
+
+      const r = Math.round(rA + (rB - rA) * amount);
+      const g = Math.round(gA + (gB - gA) * amount);
+      const b = Math.round(bA + (bB - bA) * amount);
+
+      return "rgb(" + r + ", " + g + ", " + b + ")";
+    }
+
+    // getting the current hour, minute, second, then setting it to a 12 hour not 24 hour
+    function formatTime() {
+        const now = new Date();
+        const h = now.getHours();
+        const m = now.getMinutes();
+        const s = now.getSeconds();
+        const ampm = h < 12 ? "am" : "pm";
+        const h12  = (h % 12) || 12;
+    // padding each number so single digits get a zero (9 > 09)
+        const hStr = String(h12).padStart(2, "0");
+        const mStr = String(m).padStart(2, "0");
+        const sStr = String(s).padStart(2, "0");
+    return hStr + ":" + mStr + ":" + sStr + " " + ampm;
+}
+    function update() {
+      const hour = getCurrentHour();
+      const bg = getBackgroundColor(hour);
+      document.body.style.background =
+        "radial-gradient(ellipse 75% 70% at 50% 50%, " + bg + ", #5c5c5c 120%)";
+
+    // lookinh for dark or light bg
+      const matched = getStateForHour(hour);
+      const isLight = !matched.dark;
+      if (isLight) {
+        document.body.classList.add("light-mode");
+      } 
+      else {
+        document.body.classList.remove("light-mode");
+      }
+    // pick colors for light/dark mode
+      const mainColor = isLight ? "rgba(20, 10, 10, 0.72)" : "#f7f0f0";
+      const dimColor = isLight ? "rgba(20, 10, 10, 0.38)" : "#f7f0f066";
+      const ringColor = isLight ? "rgba(180, 80, 60, 0.65)" : "rgba(180, 140, 255, 0.75)";
+      const trackColor = isLight ? "rgba(0, 0, 0, 0.10)" : "#f7f0f02f";
+
+    // aplying color elements for screen
+      document.getElementById("title").style.color = mainColor;
+      document.getElementById("text2").style.color = dimColor;
+      document.getElementById("energy-percent").style.color = mainColor;
+      document.getElementById("energy-text").style.color = dimColor;
+      document.getElementById("ring-fill").style.stroke = ringColor;
+      document.getElementById("ring-bg").style.stroke = trackColor;
+
+      if (matched.state !== currentStateName) {
+        document.getElementById("title").style.opacity = "0";
+        document.getElementById("text2").style.opacity = "0";
+
+    // fade out first, then swap the text and fade back in
+        setTimeout(() => {
+          document.getElementById("title").textContent = matched.state;
+          document.getElementById("text2").textContent = matched.phrase;
+          document.getElementById("title").style.opacity = "1";
+          document.getElementById("text2").style.opacity = "1";
+        }, 600);
+
+        currentStateName = matched.state;
+      }
+
+    // calculate how full the ring should look based on energy percentage
+      const energy = getEnergyForHour(hour);
+      const offset = ringCircumference * (1 - energy / 100);
+
+      document.getElementById("ring-fill").style.strokeDashoffset = offset;
+      document.getElementById("energy-percent").textContent = energy;
+
+    // update the clock at the bottom
+      document.getElementById("time").textContent = formatTime();
+    }
+</script>
+</body>
+</html>
