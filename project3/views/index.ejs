@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Slime Vault</title>
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body>
+        <%- include('nav.ejs', {current: 'home'}) %>
+        <main class="page-layout">
+        <section class="hero section-card">
+            <p class="kicker">Community Archive</p>
+            <h1 class="logo-text">Slime Vault</h1>
+            <p class="intro-text">a time capsule for the og slime era</p>
+            <div class="hero-actions">
+            <a href="/vault" class="btn">browse vault</a>
+            <a href="/submit" class="btn alt">post a recipe</a>
+            </div>
+        </section>  
+
+        <section class="section-card">
+            <h2>recent posts</h2>
+            <% if (!recentRecipes.length) { %>
+                <p>no recipes yet... be the first to submit one!</p>
+            <% } %>
+            <div class="card-grid">
+                <% for (let recipe of recentRecipes) { %>
+                    <article class="recipe-card">
+                        <p class="recipe-info"><%= recipe.type %> ~ grade <%= recipe.grade || '?' %></p>
+                        <h3><%= recipe.name %></h3>
+                        <p>by <strong><%= recipe.submitter %></strong></p>
+                    </article>
+                <% } %>
+            </div>
+        </section>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>submit ~ Slime Vault</title>
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body>
+        <%- include('nav.ejs', {current: 'submit'}) %>
+
+        <main class="page-layout">
+            <section class="section-card form-wrap">
+                <h1>submit a recipe</h1>
+                <p class="intro-text">no account needed, your memory goes live immediately</p>
+                <form action="/submit" method="POST" enctype="multipart/form-data" class="recipe-form">
+                    <label for="recipeName">recipe name</label>
+                    <input id="recipeName" type="text" name="recipeName" required>
+
+                    <label for="submitterName">recipe name</label>
+                    <input id="submitterName" type="text" name="submitterName" placeholder="anonymous">
+
+                    <label for="grade">the grade in which you made it</label>
+                    <input id="grade" type="text" name="grade" placeholder="5th">
+
+                    <label for="slimeType">slime type</label>
+                    <select id="slimeType" name="slimeType" required>
+                        <% for (let type of types) { %>
+                            <option value="<%= type %>"><%= type %></option>
+                        <% } %>
+                    </select>
+
+                    <label for="ingredients">ingredients</label>
+                    <textarea id="ingredients" name="ingredients" rows="4" required></textarea>
+
+                    <label for="instructions">instructions</label>
+                    <textarea id="instructions" name="instructions" rows="5" required></textarea>
+
+                    <label for="recipeImage">photo (optional)</label>
+                    <input id="recipeImage" type="file" name="recipeImage" accept="image/*">
+
+                    <button type="submit" class="btn">add to vault</button> 
+                </form>
+            </section>
+        </main>
+    </body>
+</html>

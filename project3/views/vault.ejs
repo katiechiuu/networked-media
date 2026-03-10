@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>vault ~ slime vault</title>
+        <link href="style.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <%- include('nav.ejs', { current: 'vault' }) %>
+        
+        <main class="page-layout">
+            <section class="section-card">
+                <h1>recipe vault</h1>
+                <p class="intro-text">filter by slime type to view exact categories from the era</p>
+                <div class="filter-links">
+                    <a href="/vault" class="chip <%= activeFilter === null ? 'active' : '' %>">all</a>
+                    <% for (let type of types) { %>
+                        <a href="/vault?type=<%= type %>" class="chip <%= activeFilter === type ? 'active' : '' %>"><%= type %></a>
+                    <% } %>
+                </div>
+            </section>
+
+            <section class="card-grid">
+                <% if (!recipes.length) { %>
+                    <article class="recipe-card">
+                        <h2>no recipes found</h2>
+                        <p>try another filter or submit a new batch</p>
+                    </article>
+                <% } %>
+
+                <% for (let recipe of recipes) { %>
+                    <article class="recipe-card">
+                    <% if (recipe.image) { %>
+                        <img src="/uploads/<%= recipe.image %>" alt="Photo for <%= recipe.name %>" class="recipe-image">
+                    <% } %>
+                    <p class="meta"><%= recipe.type %> • grade: <%= recipe.grade || '?' %></p>
+                    <h2><%= recipe.name %></h2>
+                    <p><strong>submitted by:</strong> <%= recipe.submitter %></p>
+                    <p><strong>ingredients:</strong> <%= recipe.ingredients %></p>
+                    <p><strong>instructions:</strong> <%= recipe.instructions %></p>
+                    </article>
+                <% } %>
+            </section>
+        </main>
+    </body>
+</html>
