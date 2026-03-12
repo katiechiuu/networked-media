@@ -1,0 +1,208 @@
+@font-face {
+  font-family: 'Showpop';
+  src: url('/uploads/Showpop.ttf');
+}
+
+body {
+  margin: 0;
+  color: black;
+  font-family: 'futura', sans-serif;
+  text-transform: none;
+  background-color: #ff9fd9;
+  background-image: url('/uploads/background.jpg');
+  background-size: auto 1000px;
+  background-position: top left;
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+}
+
+a {
+  color: black;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background: #ffffffcf;
+  border-bottom: 3px solid black;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.logo {
+  text-decoration: none;
+  font-family: 'Showpop', 'futura', sans-serif;
+  font-size: 22px;
+  color: #ff1ea0;
+  -webkit-text-stroke: 2px #fff4f9;
+  paint-order: stroke fill;
+  filter: drop-shadow(2px 2px 0 black);
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav-links a,
+.filter-button,
+.btn {
+  text-decoration: none;
+  border: 3px solid black;
+  box-shadow: 6px 6px 0 black;
+  border-radius: 20px;
+  background: #fff4f9;
+  font-family: 'futura', sans-serif;
+  padding: 7px 14px;
+}
+
+.nav-links a.active,
+.filter-button.active {
+  background: #ff1ea0;
+}
+
+.page-layout {
+  width: 92%;
+  max-width: 1080px;
+  margin: 24px auto 70px;
+  display: grid;
+  gap: 20px;
+}
+
+.section-card {
+  border: 3px solid black;
+  box-shadow: 6px 6px 0 black;
+  border-radius: 20px;
+  background: linear-gradient(120deg, #ff7fd6, #73dcff, #ffe56d);
+  padding: 20px;
+}
+
+.top-text {
+  font-family: 'futura', monospace;
+  margin: 0;
+}
+
+.logo-text {
+  margin: 6px 0 10px;
+  font-family: 'Showpop', 'futura', sans-serif;
+  font-size: 56px;
+  color: #ff1ea0;
+  -webkit-text-stroke: 3px #fff4f9;
+  paint-order: stroke fill;
+  filter: drop-shadow(3px 3px 0 black);
+}
+
+.intro-text {
+  margin-top: 0;
+  font-size: 17px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  background: #00ff44;
+}
+
+.btn.alt {
+  background: #00ddff;
+}
+
+h1, h2, h3 {
+  font-family: 'futura', sans-serif;
+  margin-top: 0;
+}
+
+.filter-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 14px;
+}
+
+.recipe-card {
+  border: 3px solid black;
+  box-shadow: 6px 6px 0 black;
+  border-radius: 20px;
+  background: #fff4f9;
+  padding: 14px;
+}
+
+.recipe-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border: 3px solid black;
+  border-radius: 14px;
+  margin-bottom: 8px;
+}
+
+.recipe-info {
+  margin-top: 0;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-family: 'futura', monospace;
+  letter-spacing: 1px;
+}
+
+.form-wrap {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.recipe-form {
+  display: grid;
+  gap: 8px;
+}
+
+.recipe-form label {
+  font-family: 'futura', monospace;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.recipe-form input,
+.recipe-form textarea,
+.recipe-form select {
+  width: 100%;
+  border: 3px solid black;
+  border-radius: 14px;
+  padding: 10px;
+  font-family: 'futura', sans-serif;
+  font-size: 16px;
+}
+
+@media (max-width: 760px) {
+  .main-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .nav-links a,
+  .filter-button,
+  .btn {
+    box-shadow: 4px 4px 0 black;
+    border-width: 2px;
+  }
+
+  .section-card,
+  .recipe-card {
+    box-shadow: 4px 4px 0 black;
+    border-width: 2px;
+  }
+}
