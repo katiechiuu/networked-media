@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>our town</title>
+    <link rel="stylesheet" href="/style.css" />
+
+  </head>
+  <body>
+    <main class="layout">
+
+      <div class="builder-panel">
+        <header class="panel-header">
+          <h1>build your house ⋆˚꩜｡</h1>
+          <p class="panel-desc">build your digital home !</p>
+        </header>
+
+        <section class="card">
+          <div class="heading">
+            <h2>roof style</h2>
+          </div>
+          <div class="option-grid">
+            <button class="option-card" type="button" data-key="roofType" data-value="round">
+              <img class="option-preview" src="/uploads/pinkroundroof.png" alt="rounded roof" />
+              <span class="option-label">rounded</span>
+            </button>
+            <button class="option-card" type="button" data-key="roofType" data-value="flat">
+              <img class="option-preview" src="/uploads/pinkflatroof.png" alt="flat roof" />
+              <span class="option-label">flat</span>
+            </button>
+            <button class="option-card" type="button" data-key="roofType" data-value="triangular">
+              <img class="option-preview" src="/uploads/pinktriangularroof.png" alt="triangular roof" />
+              <span class="option-label">triangular</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="heading">
+            <h2>style details</h2>
+          </div>
+
+          <div class="mini-box">
+            <label>roof color</label>
+            <div class="color-swatches">
+              <button class="swatch-button" type="button" data-key="roofColor" data-value="pink" title="pink"><span class="swatch-dot swatch-pink"></span></button>
+              <button class="swatch-button" type="button" data-key="roofColor" data-value="blue" title="blue"><span class="swatch-dot swatch-blue"></span></button>
+              <button class="swatch-button" type="button" data-key="roofColor" data-value="teal" title="teal"><span class="swatch-dot swatch-teal"></span></button>
+              <button class="swatch-button" type="button" data-key="roofColor" data-value="orange" title="orange"><span class="swatch-dot swatch-orange"></span></button>
+            </div>
+          </div>
+
+          <div class="mini-box">
+            <label>door</label>
+            <div class="images">
+              <button class="tile-button" type="button" data-key="doorColor" data-value="pink">
+                <img class="tile-preview" src="/uploads/pinkdoor.png" alt="pink door" />
+                <span class="tile-label">pink</span>
+              </button>
+              <button class="tile-button" type="button" data-key="doorColor" data-value="blue">
+                <img class="tile-preview" src="/uploads/bluedoor.png" alt="blue door" />
+                <span class="tile-label">blue</span>
+              </button>
+              <button class="tile-button" type="button" data-key="doorColor" data-value="teal">
+                <img class="tile-preview" src="/uploads/tealdoor.png" alt="teal door" />
+                <span class="tile-label">teal</span>
+              </button>
+              <button class="tile-button" type="button" data-key="doorColor" data-value="orange">
+                <img class="tile-preview" src="/uploads/orangedoor.png" alt="orange door" />
+                <span class="tile-label">orange</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="mini-box">
+            <label>window style</label>
+            <div class="options-row">
+              <button class="pill" type="button" data-key="windowStyle" data-value="square">
+                <span>square</span>
+              </button>
+              <button id="circle-button" class="pill" type="button" data-key="windowStyle" data-value="circle">
+                <span>circle</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="mini-box">
+            <label>window color</label>
+            <div class="images">
+              <button class="tile-button" type="button" data-key="windowColor" data-value="pink">
+                <img class="tile-preview" src="/uploads/window1.png" alt="pink window" />
+                <span class="tile-label">pink</span>
+              </button>
+              <button class="tile-button" type="button" data-key="windowColor" data-value="blue">
+                <img class="tile-preview" src="/uploads/bluewindow.png" alt="blue window" />
+                <span class="tile-label">blue</span>
+              </button>
+              <button class="tile-button" type="button" data-key="windowColor" data-value="teal">
+                <img class="tile-preview" src="/uploads/tealwindow.png" alt="teal window" />
+                <span class="tile-label">teal</span>
+              </button>
+              <button class="tile-button" type="button" data-key="windowColor" data-value="orange">
+                <img class="tile-preview" src="/uploads/orangewindow.png" alt="orange window" />
+                <span class="tile-label">orange</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="mini-box">
+            <label>chimney color</label>
+            <div class="color-swatches">
+              <button class="swatch-button chimney-color-button" type="button" data-key="chimneyColor" data-value="pink" title="pink"><span class="swatch-dot swatch-pink"></span></button>
+              <button class="swatch-button chimney-color-button" type="button" data-key="chimneyColor" data-value="blue" title="blue"><span class="swatch-dot swatch-blue"></span></button>
+              <button class="swatch-button chimney-color-button" type="button" data-key="chimneyColor" data-value="teal" title="teal"><span class="swatch-dot swatch-teal"></span></button>
+              <button class="swatch-button chimney-color-button" type="button" data-key="chimneyColor" data-value="orange" title="orange"><span class="swatch-dot swatch-orange"></span></button>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="heading">
+            <h2>extras</h2>
+          </div>
+          <div class="extras-grid">
+            <label class="checkboxes">
+              <input type="checkbox" id="cat-window-enabled" />
+              <span>cat in window</span>
+            </label>
+            <label class="checkboxes">
+              <input type="checkbox" id="chimney-enabled" />
+              <span>chimney</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="heading">
+            <h2>name / sign</h2>
+          </div>
+          <input
+            class="text-input"
+            type="text"
+            id="house-name"
+            maxlength="40"
+            placeholder="e.g. the lees, no. 7, a quiet house..."
+          />
+        </section>
+
+        <section class="card">
+          <div class="heading">
+            <h2>note (optional)</h2>
+          </div>
+          <textarea
+            class="text-area"
+            id="house-note"
+            maxlength="120"
+            rows="4"
+            placeholder="a small thought for your neighbors..."
+          ></textarea>
+        </section>
+
+        <button id="move-in-button" class="move-in-button" type="button">move in</button>
+        <p class="status-text" id="status-message"></p>
+      </div>
+
+      <div class="map-panel">
+        <div class="map-area">
+          <div class="map-box">
+            <img class="map-image" src="/uploads/ourtown-bg.png" alt="island map" />
+            <div id="plot-layer" class="plot-layer"></div>
+            <div id="hover-card" class="hover-card" hidden></div>
+
+            <div class="preview-card preview-box">
+              <div class="heading small-heading">
+                <h2>preview</h2>
+              </div>
+              <canvas id="preview-canvas" class="house-canvas" width="160" height="160"></canvas>
+            </div>
+
+            <div class="details-card details-box" id="details-card" hidden>
+              <button type="button" class="details-close" id="details-close">x</button>
+              <p class="details-label">Resident details</p>
+              <h3 id="details-title">No house selected</h3>
+              <p id="details-subtitle" class="details-subtitle">
+                Hover a house for a quick peek, then click for the full details.
+              </p>
+              <div class="details-image">
+                <canvas id="details-canvas" class="house-canvas details-canvas" width="160" height="160"></canvas>
+              </div>
+              <div class="details-list">
+                <div>
+                  <p class="field-label">Roof</p>
+                  <p id="details-roof">-</p>
+                </div>
+                <div>
+                  <p class="field-label">Window</p>
+                  <p id="details-window">-</p>
+                </div>
+                <div>
+                  <p class="field-label">Extras</p>
+                  <p id="details-extras">-</p>
+                </div>
+                <div>
+                  <p class="field-label">Moved in</p>
+                  <p id="details-date">-</p>
+                </div>
+              </div>
+              <p class="details-note" id="details-note"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="/script.js"></script>
+  </body>
+</html>
